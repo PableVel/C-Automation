@@ -20,17 +20,17 @@ namespace Test
             loginObj.typeUser("standard_user");
             loginObj.typePassword("secret_sauce");
             ProductsPage productsObj = loginObj.clickLogin();
-            Assert.AreEqual("Swag Labs", productsObj.getTitle("Swag Labs"));
+            Assert.AreEqual("Swag Labs", productsObj.getTitle());
             productsObj.selectFromContainerByText("Price (low to high)");
             productsObj.clickAddCartBikeLightBtn();
             productsObj.clickAddCartBoltTShirtBtn();
             CartPage cartObj = productsObj.clickShoppingCartBtn();
-            Assert.AreEqual("https://www.saucedemo.com/cart.html", cartObj.getURL("https://www.saucedemo.com/cart.html"));
+            Assert.AreEqual("https://www.saucedemo.com/cart.html", cartObj.getURL());
             productsObj = cartObj.clickBack();
-            Assert.AreEqual("Swag Labs", productsObj.getTitle("Swag Labs"));
+            Assert.AreEqual("Swag Labs", productsObj.getTitle());
             productsObj.clickMenuBtn();
             SauceLabs sauceLabsObj = productsObj.clickAboutBtn();
-            Assert.AreEqual("Cross Browser Testing, Selenium Testing, Mobile Testing | Sauce Labs", sauceLabsObj.getTitle("Cross Browser Testing, Selenium Testing, Mobile Testing | Sauce Labs"));
+            Assert.AreEqual("Cross Browser Testing, Selenium Testing, Mobile Testing | Sauce Labs", sauceLabsObj.getTitle());
             
 
 

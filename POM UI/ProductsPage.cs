@@ -16,15 +16,20 @@ namespace POM_UI
         private By shoppingCartLink = By.XPath("//*[@id=\"shopping_cart_container\"]/a");
         private By menuBtn = By.CssSelector("button[id =\"react-burger-menu-btn\"]");
         private By aboutLink = By.LinkText("ABOUT");
+        private static readonly object padlock = new object();
+
         private ProductsPage(IWebDriver driver) : base(driver) { }
 
         public static ProductsPage getInstance(IWebDriver driver)
         {
-            if (instance == null)
+            lock (padlock)
             {
-                instance = new ProductsPage(driver);
+                if (instance == null)
+                {
+                    instance = new ProductsPage(driver);
+                }
+                return instance;
             }
-            return instance;
         }
 
         public void selectFromContainerByText(String textToType)
@@ -53,6 +58,16 @@ namespace POM_UI
         {
             waitAndClick(aboutLink, 15);
             return SauceLabs.getInstance(driver);
+        }
+        public String getPrice(int productNumber)
+        {
+            By productPrice = By.XPath("//*[@class='inventory_list']/div["+productNumber+"]/div[2]/div[2]/div");
+            return getText(productPrice);
+        }
+        public void clickAddProduct(int productNumber)
+        {                               
+            By addProductBtn = By.XPath("//*[@class='inventory_list']/div["+productNumber+"]/div/div[2]/button");
+            waitAndClick(addProductBtn);
         }
        
     }

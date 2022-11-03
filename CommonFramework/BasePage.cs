@@ -21,9 +21,7 @@ namespace POM_UI
         public BasePage(IWebDriver driver)
         {
             this.driver = driver;
-            this.driver.Manage().Window.Maximize();
-            
-            wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(10));
+            wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(35));
         }
 
         public void GoToUrl(String url)
@@ -113,17 +111,29 @@ namespace POM_UI
             new SelectElement(wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(locator))).SelectByText(textToCompare);
         }
 
-        public String getTitle(String expectedTitle)
+        public String getTitle()
         {
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.TitleContains(expectedTitle));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.PresenceOfAllElementsLocatedBy(By.TagName("div")));
             return driver.Title;
         }
 
-        public String getURL(String expectedURL)
+        public String getURL()
         {
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.UrlContains(expectedURL));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.PresenceOfAllElementsLocatedBy(By.TagName("div")));
             return driver.Url;
         }
+
+        public String getPageSource()
+        {
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.PresenceOfAllElementsLocatedBy(By.TagName("div")));
+            return driver.PageSource;
+        }
+        public String getText(By locator)
+        {
+            IWebElement element = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(locator));
+            return element.Text;
+        }
+
 
         
 

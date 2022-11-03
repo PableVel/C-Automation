@@ -13,18 +13,24 @@ namespace POM_UI
         private By userField = By.Name("user-name");
         private By passwordField = By.Id("password");
         private By loginBtn = By.XPath("//input[@data-test=\"login-button\"]");
+        private static readonly object padlock = new object();
 
         private LoginPage(IWebDriver driver): base(driver)
         {
+            this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl("https://www.saucedemo.com/");
 
         }
         public static LoginPage getInstance(IWebDriver driver)
         {
-            if(instance == null) { 
-                instance = new LoginPage(driver);
+            lock (padlock)
+            {
+                if (instance == null)
+                {
+                    instance = new LoginPage(driver);
+                }
+                return instance;
             }
-            return instance;
         }
 
         public void typeUser(String textToType)
@@ -39,6 +45,12 @@ namespace POM_UI
         {
             waitAndClick(loginBtn);
             return ProductsPage.getInstance(driver);
+        }
+
+        public ProductsPage login(String user, String password) {
+            typeUser(user);
+            typePassword(password);
+            return clickLogin();
         }
 
     }
