@@ -1,41 +1,31 @@
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
+
 
 namespace TestProject1
 {
     public class Tests
     {
-        IWebDriver driver;
-        Helpers helpers;
+        /* IWebDriver driver;
 
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
-        {
-            driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-            helpers = new Helpers(driver);
-        }
+       [OneTimeSetUp]
+       public void OneTimeSetUp()
+       {
+           driver = new ChromeDriver();
+           driver.Manage().Window.Maximize();
+           /*helpers = new Helpers(driver);*//*
+    }
 
 
-        [Test]
-        public void Test1()
-        {
-            driver.Navigate().GoToUrl("https://www.google.com/");
-            IWebElement searchBoxID = driver.FindElement(By.Name("q"));
-            IWebElement searchBoxXPATH = driver.FindElement(By.XPath("//input[@name='q']"));
-            IWebElement searchBoxCSS = driver.FindElement(By.CssSelector("input[name=q]"));
-        }
-
-         
-        [Test]
+    [Test]
         public void Test2()
         {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
             driver.Navigate().GoToUrl("https://www.saucedemo.com/");
 
-            helpers.waitAndType(By.Name("user-name"),"standard_user");
-            helpers.waitAndType(By.Id("password"),"secret_sauce");
+            helpers.waitAndType(By.Name("user-name"), "standard_user");
+            helpers.waitAndType(By.Id("password"), "secret_sauce");
             helpers.waitAndClick(By.XPath("//input[@data-test=\"login-button\"]"));
             SelectElement dropDown = new SelectElement(driver.FindElement(By.CssSelector("select.product_sort_container")));
             dropDown.SelectByText("Price (low to high)");
@@ -51,7 +41,9 @@ namespace TestProject1
         [OneTimeTearDown]
         public void TearDown()
         {
+            Thread.Sleep(3000);
             driver.Close();
-        }
+
+        }*/
     }
 }

@@ -6,7 +6,7 @@ namespace TestProject1
 {
     class Helpers
     {
-        IWebDriver driver;
+        /*IWebDriver driver;
         WebDriverWait wait;
         public Helpers(IWebDriver driver)
         {
@@ -95,6 +95,6 @@ namespace TestProject1
                 Assert.Fail("This element does not exists: " + locator);
 
             }
-        }
+        }*/
     }
 }
