@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using CommonFramework;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace POM_UI
 {
     public class ProductsPage:BasePage
     {
-        private static ProductsPage instance;
+        private static ProductsPage? _instance;
         private By sortContainerDropDown = By.CssSelector("select.product_sort_container");
         private By addCartBikeLightBtn = By.Name("add-to-cart-sauce-labs-bike-light");
         private By addCartBoltTShirtBtn = By.CssSelector("button[data-test=\"add-to-cart-sauce-labs-bolt-t-shirt\"]");
@@ -17,18 +18,25 @@ namespace POM_UI
         private By menuBtn = By.CssSelector("button[id =\"react-burger-menu-btn\"]");
         private By aboutLink = By.LinkText("ABOUT");
         private static readonly object padlock = new object();
+        public static IWebDriver? myDriver = null;
+
 
         private ProductsPage(IWebDriver driver) : base(driver) { }
 
-        public static ProductsPage getInstance(IWebDriver driver)
+        public static ProductsPage getInstance(IWebDriver Driver)
         {
             lock (padlock)
             {
-                if (instance == null)
+                if (_instance == null)
                 {
-                    instance = new ProductsPage(driver);
+                    _instance = new ProductsPage(Driver);
+                    myDriver = Driver;
                 }
-                return instance;
+                else if (Driver != myDriver)
+                {
+                    _instance = new ProductsPage(Driver);
+                }
+                return _instance;
             }
         }
 

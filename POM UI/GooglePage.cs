@@ -9,7 +9,7 @@ namespace POM_UI
 {
     public class GooglePage:BasePage
     {
-        private static GooglePage instance;
+        private static GooglePage? instance;
         
         private By searchBoxName = By.Name("q");
         private By searchBoxXpath = By.XPath("//input[@name='q']");

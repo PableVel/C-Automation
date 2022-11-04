@@ -21,14 +21,12 @@ namespace Test
             googlePage.typeSearchBoxCss("Karthik");
             googlePage.typeSearchBoxName("from Mexico");
 
-            Assert.Pass();
         }
 
         [OneTimeTearDown]
         public void tearDown()
         {
-            driver.Close();
-            driver.Quit();
+            Driver.tearDown();
         }
     }
 }

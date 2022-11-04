@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using CommonFramework;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +10,23 @@ namespace POM_UI
 {
     public class SauceLabs:BasePage
     {
-        private static SauceLabs instance;
+        private static SauceLabs _instance;
+        public static IWebDriver? myDriver = null;
 
         private SauceLabs(IWebDriver driver) : base(driver) { }
 
-        public static SauceLabs getInstance(IWebDriver driver)
+        public static SauceLabs getInstance(IWebDriver Driver)
         {
-            if (instance == null)
+            if (_instance == null)
             {
-                instance = new SauceLabs(driver);
+                _instance = new SauceLabs(Driver);
+                myDriver = Driver;
             }
-            return instance;
+            else if (Driver != myDriver)
+            {
+                _instance = new SauceLabs(Driver);
+            }
+            return _instance;
         }
     }
 }

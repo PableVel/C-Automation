@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using CommonFramework;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,23 +10,31 @@ namespace POM_UI
 {
     public class CheackoutPage1:BasePage
     {
-        private static CheackoutPage1 instance;
+        private static CheackoutPage1? _instance;
         private By firstNameField = By.Id("first-name");
         private By lastNameField = By.Id("last-name");
         private By zipCodeField = By.Id("postal-code");
         private By continueBtn = By.Id("continue");
         private static readonly object padlock = new object();
+        public static IWebDriver? myDriver = null;
+
 
         private CheackoutPage1(IWebDriver driver) : base(driver) { }
-        public static CheackoutPage1 getInstance(IWebDriver driver)
+        public static CheackoutPage1 getInstance(IWebDriver Driver)
         {
             lock (padlock)
             {
-                if (instance == null)
+                if (_instance == null)
                 {
-                    instance = new CheackoutPage1(driver);
+                    _instance = new CheackoutPage1(Driver);
+                    myDriver = Driver;
+
                 }
-                return instance;
+                else if (Driver != myDriver)
+                {
+                    _instance = new CheackoutPage1(Driver);
+                }
+                return _instance;
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
@@ -9,27 +10,36 @@ namespace POM_UI
 {
     public class LoginPage:BasePage
     {
-        private static LoginPage instance;
+        private static LoginPage? _instance;
         private By userField = By.Name("user-name");
         private By passwordField = By.Id("password");
         private By loginBtn = By.XPath("//input[@data-test=\"login-button\"]");
         private static readonly object padlock = new object();
+        public static IWebDriver? myDriver = null;
+
 
         private LoginPage(IWebDriver driver): base(driver)
         {
-            this.driver.Manage().Window.Maximize();
-            this.driver.Navigate().GoToUrl("https://www.saucedemo.com/");
-
         }
-        public static LoginPage getInstance(IWebDriver driver)
+        public static LoginPage getInstance(IWebDriver Driver)
         {
             lock (padlock)
             {
-                if (instance == null)
+                
+                
+                if (_instance == null)
                 {
-                    instance = new LoginPage(driver);
+                    _instance = new LoginPage(Driver);
+                    myDriver = Driver;
                 }
-                return instance;
+                else if(Driver != myDriver)
+                {
+                    _instance = new LoginPage(Driver);
+                }
+                Driver.Manage().Window.Maximize();
+
+                Driver.Navigate().GoToUrl("https://www.saucedemo.com/");
+                return _instance;
             }
         }
 

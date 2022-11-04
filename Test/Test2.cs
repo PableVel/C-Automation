@@ -31,16 +31,12 @@ namespace Test
             productsObj.clickMenuBtn();
             SauceLabs sauceLabsObj = productsObj.clickAboutBtn();
             Assert.AreEqual("Cross Browser Testing, Selenium Testing, Mobile Testing | Sauce Labs", sauceLabsObj.getTitle());
-            
-
-
         }
 
         [OneTimeTearDown]
         public void tearDown()
         {
-            driver.Close();
-            driver.Quit();
+            Driver.tearDown();
         }
     }
 }

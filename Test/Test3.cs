@@ -31,8 +31,8 @@ namespace Test
         [OneTimeTearDown]
         public void tearDown()
         {
-            driver.Close();
-            driver.Quit();
+            Driver.tearDown();
+
         }
     }
 }
