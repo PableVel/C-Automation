@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "POM UI", "POM UI\POM UI.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{D5227366-4485-4CF1-BDCF-696B6A8C637E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingJenkins", "TestingJenkins\TestingJenkins.csproj", "{0FDF231F-8FB3-4274-A38C-590391FED89A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{D5227366-4485-4CF1-BDCF-696B6A8C637E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5227366-4485-4CF1-BDCF-696B6A8C637E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5227366-4485-4CF1-BDCF-696B6A8C637E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FDF231F-8FB3-4274-A38C-590391FED89A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FDF231F-8FB3-4274-A38C-590391FED89A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FDF231F-8FB3-4274-A38C-590391FED89A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FDF231F-8FB3-4274-A38C-590391FED89A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
